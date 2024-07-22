@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="static/main/img/dota-icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">-->
+    <script src="https://kit.fontawesome.com/a4afbfc383.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body>
+
+    <aside>
+        <a href="{% url 'home' %}"><img src="{% static 'main/img/doka3.png' %}" alt="Лого"></a>
+        <span class="logo"><a id="myprog" href="{% url 'home' %}">MyProject</a></span>
+        <p class="fio">Марцинкевич A. A.</p>
+        <h3>Навигация</h3>
+
+        <ul >
+            <a href="{% url 'home' %}"><li><i class="fa-solid fa-house"></i>   Главная</li></a>
+            <a href="{% url 'about' %}"><li><i class="fa-solid fa-user"></i>   О себе</li></a>
+            <a href="{% url 'projects' %}"><li><i class="fa-solid fa-toilet-paper"></i></i>   Проекты</li></a>
+            <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-newspaper"></i>   Записи</li></a>
+            <a href="{% url 'contacts' %}"><li><i class="fa-solid fa-paper-plane"></i>   Контакты</li></a>
+            <a href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить запись</button></li></a>
+
+
+
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </ul>
+
+    </aside>
+
+
+<div id="reg_auth" class="iia">
+    <div class="aut">
+        {% block mainmenu %}
+                <div class="header">
+                    <ul id="mainmenu" class="mainmenu">
+                    <a href="{% url 'home' %}"><div class="logo"></div></a>
+        {% for m in mainmenu %}
+            <a href="{% url m.url_name %}">{{m.title}}</a>
+        {% endfor %}
+        {% if user.is_authenticated %}
+
+            <a class="btn red header-last-btn" href="{% url 'users:profile' %}">{{user.username}}<div class="btn__blobs"><div></div><div></div><div></div></div></a>
+            <a href="{% url 'users:logout' %}" class="btn white">Выйти<div class="btn__blobs"><div></div><div></div><div></div></div></a>
+        {% else %}
+
+                <a href="{% url 'users:login' %}" class="btn white">Войти<div class="btn__blobs"><div></div><div></div><div></div></div></a>
+                <a href="{% url 'users:register' %}" class="btn red header-last-btn">Регистрация<div class="btn__blobs"><div></div><div></div><div></div></div></a>
+
+        {% endif %}
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+        {% endblock mainmenu %}
+    </div>
+</div>
+
+
+
+    <main>
+        {% block countent %}
+        {% endblock %}
+    </main>
+
+
+    <footer>
+
+        <div class="bot">
+            <a href="{% url 'home' %}"><img src="{% static 'main/img/doka3.png' %}" alt="Лого"></a>
+            <span class="logo"><a id="myprogit"href="{% url 'home' %}">MyProject</a></span>
+            <p class="fio">Марцинкевич A. A.</p>
+        </div>
+
+        <a href="#top" class="up"><i class="fa-solid fa-up-long"></i></a>
+
+        <div id="kontact">
+            <a href="https://t.me/krassnieglazki" target="_blank" class="kon"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://vk.com/krasssnieglazki" target="_blank" class="kon"><i class="fa-brands fa-vk"></i></a>
+            <a href="https://www.instagram.com/krasnieglazki/" target="_blank" class="kon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/79153804024" target="_blank" class="kon"><i class="fa-brands fa-whatsapp"></i></a>
+
+        </div>
+
+    </footer>
+
+
+
+
+
+<!--<div id="social-buttons">-->
+<!--<a href="https://t.me/krassnieglazki" target="_blank"><img src="static/main/img/telegram.svg" alt="Telegram">Telegram</a>-->
+<!--</div>-->
+
+
+
+    <script src="{% static 'main/js/main.js' %}"></script>
+</body>
+</html>

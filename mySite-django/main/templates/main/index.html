@@ -1,0 +1,25 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block countent %}
+
+    <div class="glav">
+
+        <h1>Главная страница - </h1>
+        <p>Данный сайт является моим личным пет-проектом. Серверная часть сайта <br> реализована с помощью фреймворка Django.
+            В качестве базы данных используется <br> SQLite3. На сайте присутствует возможность регистрации и авторизации,
+            это даёт <br> возможность зайти в раздел - <a href="{% url 'news_home' %}">Записи</a>. Работы где я использую различные методы <br>
+            и технологии можно посмотреть в разделе - <a href="{% url 'projects' %}">Проекты</a>. </p>
+    </div>
+
+
+
+    <div class="featores">
+        <img src="static/main/img/java-bg-ok.png" id="intro" alt="Программист">
+        <img src="static/main/img/light-on-bg.svg" class="lightmobile">
+        <img src="static/main/img/dotata3d.png" id="pictures-bg">
+    </div>
+
+
+{% endblock %}

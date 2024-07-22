@@ -1,0 +1,22 @@
+{% extends 'main/layout.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block countent %}
+<h1 class="reg_text">Регистрация</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    <div class="form-error" >{{ form.non_field_errors }}</div>
+    {% for f in form %}
+    {{ f.label }}{{ f }}
+    <div class="form-error" id="regist_error">{{ f.errors }}</div>
+    {% endfor %}
+
+    <button type="submit" class="button" ><div id="send_reg" class="btn red"><p id = 'rug'>Регистрация	</p><div class="btn__blobs"><div></div><div></div><div></div></div></div></button>
+
+</form>
+<form class="reg-block"></form>
+<i id="pass-reg" class="fas fa-eye" onclick="myPass_reg()" ></i>
+{% endblock %}
+
+
+<!--    <button type="submit">регистрация</button>-->

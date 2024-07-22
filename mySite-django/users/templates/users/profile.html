@@ -1,0 +1,41 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block countent %}
+<h1 class="prof-text">Профиль</h1>
+<!--<img  src="static/users/pop1.jpg">-->
+<form method="post" enctype="multipart/form-data" class="profile">
+    <div class="prof_im">
+        {% csrf_token %}
+        {% if user.photo %}
+        <div><img src="{{ user.photo.url }}" class="defaultt"></div>
+        <p id="clear_avatar">Удалить изображение</p>
+        {% else %}
+    <!--    <img  src="{{ default_image }}">-->
+        <img  src="{% static 'main/img/default.png' %}" class="defaultt">
+        <p id="cclear_avatar">Сохраните изменения</p>
+        {% endif %}
+
+    <div class="form-error">{{ form.non_field_errors }}</div>
+    {% for f in form %}
+    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label>{{ f }}</p>
+    </div>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+
+<!--    <p><button type="submit" >Сохранить</button></p>-->
+    <p id="save_res"><button type="submit" class="button" ><div id="sendd" class="btn red"><p>Сохранить изменения</p><div class="btn__blobs"><div></div><div></div><div></div></div></div></button></p>
+<!--    <button type="submit" class="button" ><div id="send" class="btn red"><p id="opa">Войти	</p><div class="btn__blobs"><div></div><div></div><div></div></div></div></button>-->
+</form>
+
+
+<!--<p><a href="{% url 'users:password_change' %}">Сменить пароль</a></p>-->
+<a href="{% url 'users:password_change' %}" class="btn white" id="res-pass">Сменить пароль<div class="btn__blobs" id="bnnn"><div></div><div></div><div></div></div></a>
+
+<form class="profile-block"></form>
+<p id="text-firstname">Имя</p>
+<p id="text-lastname">Фамилия</p>
+<p id="text-login">Логин</p>
+<p id="text-email">Email</p>
+<p id="text-date">Дата рождения</p>
+{% endblock %}

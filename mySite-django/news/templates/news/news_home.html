@@ -1,0 +1,31 @@
+
+{% extends 'main/layout.html' %}
+<!--{% load static %}-->
+{% block title %}Новости на сайте{% endblock %}
+
+{% block countent %}
+
+<!--<img  src="static/main/img/main-image-1.svg">-->
+<img src="{% static 'main/img/main-image-1.svg' %}">
+<!--<img src="static/news/img/pop8.jpg">-->
+<!--<img src="{% static 'news/img/pop8.jpg' %}">-->
+
+    <div class="features">
+        <h1 id = "news_texti">Новости на сайте</h1>
+
+        {% if news %}
+
+            {% for el in news %}
+                <div class="alert alert-warning">
+                    <h3>{{ el.title }}</h3>
+                    <p>{{ el.anons }}</p>
+                    <a href="{% url 'news-detail' el.id %}" class="btn btn-warning">Посмотреть</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет записей!</p>
+        {% endif %}
+
+        {# Комментарий #}
+    </div>
+{% endblock %}
